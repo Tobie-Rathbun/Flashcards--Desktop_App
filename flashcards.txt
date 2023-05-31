@@ -1,0 +1,2560 @@
+			//////////////////////////////
+			///                        ///
+			///    CompTIA Network+    ///
+			///                        ///
+            ///      Study Guide       ///
+            ///						   ///
+            //////////////////////////////
+
+
+
+
+	////////////////////////////////////////////////
+	/// OSI Model to Describe Network Operations ///
+	////////////////////////////////////////////////
+\OSI Model
+
+OSI Model  
+    Open Systems Interconnect
+    
+OSI Layer 1 
+    Physical Layer
+        Cables, Physically moving bits of information
+            Wire, Copper, Glass
+OSI Layer 2 
+    Data Link Layer
+        Protocols that allow computers and other devices to communicate locally
+        Individual hops between clients, switches, routers, cable modems, and internet
+            Ethernet protocol (PC to Router, Router to Cable Modem, Internet to Server, Internet to Internet)
+            DOCSIS-3 protocol (Cable Modem to Internet)
+OSI Layer 3 
+    Network Layer
+        Gives the path through the network or internet to a server
+        Uses the physical and data link layer to send messages long distances across a network
+            IP - Internet Protocol, IP Addressing, IP Routing
+OSI Layer 4  
+    Transport Layer
+        Sets up a session between PC and Server
+            TCP - Transmission Control Protocol (typically used)
+            UDP - User Datagram Protocol 
+OSI Layer 5 
+    Session Layer
+        Not used, typically considered the Application layer
+OSI Layer 6  
+    Presentation Layer
+        Not used anymore, ASCII to EBCDID (proprietary IBM)
+OSI Layer 7  
+    Application Layer
+        Transfers specific types of data in a specific way
+        Hypertext Transfer Protocol, HTTP (Port 80), HTTPS (Port 443) (Secure Socket Layer [SSL], Transport Layer Security [TLS] which are the same thing) 
+            Transfers Hypertext Markup Language (HTML)
+
+
+
+	///////////////////////////
+	///    Encapsulation    ///
+	///////////////////////////
+\Encapsulation
+Application Layer (7) 
+    is broken down into chunks and sent over the Transport Layer (4) using a TCP Header
+TCP Header
+    Source Port
+    Destination Port
+    Flags
+    Sequence #
+    Acknowledgement #
+    Payload
+        Contains Data Packets
+
+Transport Layer (4) 
+    uses Network Layer (3) for IP Routing
+    Data Packets travel with Network Layer Header
+        Source IP Address
+        Destination IP Address
+        TTL
+        Other
+        TCP Header
+Network Layer Header
+    Source IP Address
+    Destination IP Address
+    TTL
+    Other
+    TCP Header
+
+Network Layer (3) 
+    uses the Data Link Layer (2) to send packets from one device to the next
+    Ethernet (Data Link Layer) Header
+        Source MAC Address 
+        Destination MAC Address
+        Layer 3 Protocol
+        Payload
+Ethernet (Data Link Layer) Header
+    Source MAC Address 
+    Destination MAC Address
+    Layer 3 Protocol
+    Payload
+Data Link Layer (2) 
+    puts Data into a Frame
+        Ethernet Frame
+            Destination MAC Address
+            Source MAC Address 
+            Layer 3 Protocol
+            Payload including All Previous Steps
+        Reaches the next layer, and gets transferred to a different Frame throughout the process
+        Frame is referencing a new header to be read
+    Frames are sent across the Physical Layer (1) with Cables
+Frame - 
+    A chunk of data with a Data Link Layer Header
+        Destination MAC Address - 6 bytes
+        Source MAC Address - 6 bytes
+        Type - 2 Bytes    
+        Data (Payload including All Previous Steps) - (46 - 1500) bytes
+    Frames are sent across the Physical Layer (1) with Cables
+    
+
+//////////////////////////////////////
+/// Protocol Uses and Port Numbers ///
+//////////////////////////////////////
+\Protocol Uses and Port Numbers 
+HTTP - 
+    Hypertext Transfer Protocol
+    Sends HTML - Hypertext Markup Language across the internet
+    Port 80
+    HTTPs
+        Port 443     
+
+FTP - 
+    File Transfer Protocol
+    FTP - Port 20/21
+        FTP Client such as FileZilla
+            Server_Name in Host: 
+    sFTP - Secure, Port 22 (Same as SSH [Secure Shell] which is used to make FTP secure)
+    TFTP - Trivial, Port 69, Small Files
+    SMB - Server Message Block, Port 445, Network Drives
+        Win - Right Click on Network and select Map Network Drives
+        " \\Server_Name\Folder_Name "
+            Will automatically try local credentials, and then ask for network credentials if those fail
+
+Email Protocols 
+    POP3, IMAP, SMTP
+POP3 - 
+    Post Office Protocol v. 3
+        Retrieves Email
+        Port 110/995 (Unenencrypted/Encrypted)
+IMAP - 
+    Internet Message Access Protocol
+        Retrieves Email
+        Port 143/993 (Unenencrypted/Encrypted)
+SMTP - 
+    Simple Mail Transfer Protocol
+        Sends Email from Client to Server
+        Port 25/465/587/2525 (Unenencrypted/Encrypted)
+
+Authentication
+    LDAP - Lightweight Directory Access Protocol
+        Port 389
+    LDAPs (encrypted)
+        Port 636
+
+Network Protocols
+    DHCP, DNS, NTP
+DHCP - 
+    Dynamic Host Configuration Protocol
+    Port 67/68    
+
+DNS - 
+    Domain Name Server
+    Converts website names to IP addresses
+    Needs to be secured, weak point
+    Port 53
+NTP - 
+    Network Time Protocol
+    Tells the Client what time it is from the Server
+    Port 123
+    UTC - Coordinated Universal Time 
+        Synchronizes users
+        Certifies authenticity of client, security
+
+Telnet
+    Access Devices on the Network 
+    Network Administration
+    Port 23
+Secure Shell
+    Access Device on the Network
+    Encrypted
+    Network Administration
+    Port 22
+SNMP - 
+    Simple Network Management Protocol
+    Can connect to all devices, servers, firewalls to monitor them, making them a client
+    SNMP is the server
+    Network Administration
+    Port 161/162
+Syslog
+    Gets a log from each device and sends them to a centralized syslog server
+RDP - 
+    Remote Desktop Protocol
+    Gets a screenshot of a clients GUI
+    Port 3389
+
+
+H.323
+    Audio Visual Protocol
+    Port 1720
+    
+SIP - Session Initiation Protocol
+    Audio Visual Protocol
+    Port 5060/5061
+
+
+SQL - 
+    Structured Query Language
+    Database Management
+mySQL - 
+    Microsoft Structured Query Language
+    Port 3306
+SQLnet 
+    Port 1521
+SQL Server
+    Port 1433
+
+\TCP / IP
+IP
+    Internet Protocol
+TCP  
+    Transmission Control Protocol
+3-way Handshake
+    1. SYN - Synchronize
+        Client to Server
+    2. SYN-ACK - Synchronize Acknowledgement
+        Server to Client
+    3. ACK - Acknowledgement
+        Client to Server
+
+4-way Disconnect
+    1. FIN - Finish
+        Server to Client
+    2. FIN-ACK - Finish Acknowledgement
+        Client to Server
+    3. FIN
+        Client to Server 
+    4. FIN-ACK
+        Server to Client
+
+TCP Reset
+    1. RST - Reset
+        Server to Client
+
+    1. RST
+        Client to Server
+
+UDP 
+    User Diagram Protocol
+    No 3 way Handshake
+    No reliable communication
+    No sequence numbers no acknowledgement nummbers
+    Used for efficient data transfer
+    TFTP - Trivial File Transfer Protocol
+        Port 69
+NTP - 
+    Network Transfer Protocol
+    Port 123
+
+    Optional Usage
+        DNS - Domain Name Server
+            Port 53
+        SIP - Session Initiation Protocol
+            Port 5060/5061
+        H.323 - (Media Session Management)
+            Port 1719  
+        SNMP - Simple Network Management Protocol
+            Port 161 
+
+Port Numbers
+    0 - 65,535
+        0 - 1023 - Well Known
+        1024 - 49,151 - Registered
+        49,152 - 65,535 - Ephemeral
+
+CMD 
+    Command Prompt
+ipconfig
+    Shows IP information for current device
+ipconfig /release
+    Releases current IP from use, there is no longer one
+ipconfig /all 
+    Shows MAC Address 
+ipconfig /release 
+    Release IP Address 
+ipconfig /renew 
+    Goes to DHCP Server and asks for new IP Address 
+ipconfig /flushdns 
+    Flushes DNS Cache 
+ping - Package Internet Groper
+    ping 192.168.10.10
+        Sends 4 packets to a given IP and tries to receive 4 responses
+        Make sure to look at the 4 lines Reply... because Packets: is unreliable 
+netstat -ano 
+    switch a 
+        all devices 
+    switch n 
+        IP address as numerical value 
+    switch o 
+        Shows operation in Windows associated with service 
+route print 
+    Displays Routing Table 
+arp -a
+    All of the entries on ARP Table including addresses that have been pinged  
+arp -d 
+    Deletes the ARP table  
+tracert 
+    Finds all routers connecting current workstation to destination IP
+nslookup pluralsight.com 10.128.50
+    Reverse lookup is a configured value on Windows
+iperf -s 
+    Start server, start listing 
+iperf -c 10.0.0.100
+    Connects to Client at IP  
+
+/Terminal (Linux)
+ifconfig 
+    similar to ipconfig on Windows
+route 
+    shows default gateway 
+route -n 
+    doesn't check DNS for name of each IP 
+ping 
+    doesn't stop until Ctrl + C 
+traceroute 172.01.10.01
+    Finds all routers connecting current workstation to destination IP 
+hostname 
+    Returns hostname as string 
+nslookup 172.01.10.01
+    Returns the IP Address and Name of a server  
+dig 172.01.10.01
+    Gives more information about the header 
+
+Binary
+    128, 64, 32, 16, 8, 4, 2, 1
+    0 = none 1 = number present 
+        Summarize Numbers
+168 in Binary
+    168/2 = 84, no remainder    = 0
+    84/2 = 42, no remainder     = 0
+    42/2 = 21 no remainder      = 0
+    21/2 = 10, remainder of 1   = 1
+    10/2 = 5, no remainder      = 0
+    5/2 = 2, remainder of 1     = 1
+    2/2 = 1, no remainder       = 0
+    1/2 = 0, remainder of 1     = 1
+    so 168 is 10101000
+
+Hexadecimal
+    base 16 system
+    1 - 9, A - F, 10
+    
+
+
+
+//////////////////////////////////////////
+\IP Addresses & Subnetting Networks ///
+//////////////////////////////////////////
+
+
+Network Portion (IP Adress)
+    Starts in binary with 1's
+        203.0.113
+            11001011
+            00000000
+            01110001
+        255.
+            11111111
+        255.255.240  (Doesn't have to be split up across octets)
+            11111111
+            11111111
+            1111
+Host Portion (IP Adress)
+    Starts in binary with 0's
+        .10
+            00001010
+        .0.0.10
+            00000000
+            00000000
+            00001010
+        .240.0
+                0000
+            00000000
+Convert decimal to binary to get true IP 203.0.113.10
+    11001011
+    00000000
+    01110001
+    00001010
+Classful Addressing
+    Purely Historical, but on Exam (Before 1995, Limited number of IPs)
+Unicast
+    A
+        0.0.0.0   - 127.255.255.255
+        First 8 bits are Network, Next 24 are Host
+        
+    B
+        128.0.0.0 - 191.255.255.255
+        First 16 bits are Network, Next 16 are Host
+    C
+        192.0.0.0 - 223.255.255.255
+        First 24 bits are Network, Next 8 are Host
+Multicast
+    D
+        224.0.0.0 - 239.255.255.255
+        All bits are Network
+Experimental (Not used)
+    E
+        240.0.0.0 - 255.255.255.255
+
+Classless Addressing
+    Uses Subnet Mask to determine which portion of IP is Host
+        What are 1's is Network Portion, and what are 0's is Host Portion
+            11111111 1111111 11111111 00000000
+            Is 255.255.255.0 which is a common Subnet Mask
+
+            11111111 0000000 00000000 00000000
+            Is 255.0.0.0 as a Subnet Mask
+
+CIDR - 
+    Clasless Inter-Domain Routing
+    203.0.113.10/24
+        Where /24 is notation for Subnet Mask 255.255.255.0
+        Implies the first 24 bits are Network Portion
+
+
+Private IP Addresses
+    Routes to a Public IP address momentarily before routing back to a Private IP
+        Class A
+            10.0.0.0 - 10.255.255.255
+        Class B
+            172.16.0.0 - 172.31.255.255
+        Class C
+            192.168.0.0 - 192.168.255.255
+        Documented in RFC (Request for Comments)
+            Changes and addtions to Protocols
+
+Modify and Test IP Configuration
+    Devices need the same Network Portion to be able to talk to each other
+        192.168.11.10
+        255.255.254.0
+            and
+        192.168.10.10
+        255.255.254.0
+            Talk to each other
+                11000000 10101000 00001011 00001010
+                11111111 11111111 11111110 00000000
+
+                11000000 10101000 00001010 00001010
+                11111111 11111111 11111110 00000000
+
+IP Network Components
+    Network IP Address
+        All binary 0's in Host Portion
+        All binary 1's in Host Portion
+
+VLSM - 
+    Variable Length Subnet Masking
+
+
+Nibble
+    4 bits
+    Single Hexadecimal value
+
+Bytes
+    8 bits
+    2 nibbles
+    2 hex values
+
+16 bit sections
+    2 Bytes
+    4 nibbles
+    Hextet (4 hex values)
+
+IPv4
+    32 bits
+    4 octets (4 bytes)
+    8 hex values
+
+
+IPv6
+    128 bits
+    32 nibbles
+    32 hex values
+    8 Hextets (sets of 4 hex values seperated by :)
+
+    /64 Mask often times
+        64 bit Network Portion
+        64 bit Host Portion
+    
+Leading 0's
+    2001:0DB8:0002:008D:0000:0000:00A5:52F5
+        Remove Hextets starting with 0's 
+            2001:DB8:2:8D:0:0:A5:52F5
+Eliminate 0's with Double Colon
+    2001:DB8:2:8D::A5:52F5
+        Double Colon can only be used once
+        Often times is at the beginning of Host Portion
+    
+IPv6 Unicast Address
+    Connects devices across the internet
+    Matches up devices with different Network Portion at a router
+    Class A, B, C
+    Every device has 2 IPv6 Addresses
+        Local
+        Global
+    Unicast Address
+        IPv6 Link Local Address
+            Local communication
+            FE80::/10
+        Global Unicast Address
+        Loopback Address
+            ::1/128
+
+Multicast Address
+    One to many communication
+
+Anycast Address
+    One IPv6 address across many devices
+    Used for load balancing
+
+IPv6 Address Acquisition
+    SLAAC 
+    DHCP 
+
+SLAAC - 
+    Stateless Address Auto-Configuration
+    Win - Random 64 bit Interface Identifier
+    Unix/Linux/Mac - Modified EUI - 64
+        MAC Address
+            Grab MAC Address, split into 2, put FF:FE in the middle, Making it 64 bits, by adding 16 bits
+            Interface indentifier
+DHCP - 
+    Dynamic Host Configuration Protocol (Network Layer 3)
+    Server that hands out addresses for devices within an organization
+    Built into your router, set up with a DHCP scope, excluding addresses etc.
+        When seeking an address, workstation sends a Discover Message to the router
+        Once received by DHCP Server, Server sends workstation DHCP Offer
+            Workstation sends a request to confirm that it wants to use this IP
+            Server acknowledges Workstation request
+                Discover Message
+                DHCP Offer
+                Request
+                Acknowledgement
+DHCP Binding - 
+    Table that lists out used IP and MAC addresses
+    IP Helper Address
+        Forwards messages to DHCP server at an IP that is not local to the Subnet
+        Allows for single DHCP server for all subnets in a network
+
+IPv6 Tunneling
+    IPv6 and IPv4 aren't compatible
+    IPv6 can send an IPv4 packet that opens up as an IPv6 on a device
+    Traverses IPv4 Internet
+
+Changing IP Addresses and Subnet Masks
+    IPv4
+        Win - Control Panel > Network and Sharing Center > Ethernet0 > IPv4 > Properties
+    IPv6
+        Win - Control Panel > Network and Sharing Center > Ethernet0 > IPv6 > Properties
+
+
+
+
+
+
+
+Network Service Protocols
+    NAT, PAT, DNS, URL, TLD, Domain, Third Level Domain, Fourth Level Domain 
+NAT - 
+    Network Address Translation
+    Router changes Source IP from Local IP to Router Public IP
+        Stores Local IP in a table
+
+PAT - Port Address Translation
+    Home network, local address translation
+
+DNS  
+    Domain Name Systems
+URL - 
+    Uniform Resource Locater
+        www.tobie.game
+TLD - 
+    Top Level Domain
+    .com .prg .net
+Domain - 
+    Second Level Domain
+    tobie
+    google
+Third Level Domain
+    Hostname
+    www.
+Fourth Level Domain
+    www. where Third is another domain
+        www.drive.gooogle.com
+Using DNS
+    Forward DNS Lookup 
+    Reverse DNS Lookup 
+    DNS Record Types 
+
+Forward DNS Lookup
+    Workstation communicates to DNS server (Google DNS) and resolves IP address of a URL
+        Google DNS responds with IP from URL
+Reverse DNS Lookup
+    Workstation sends IP to DNS Server
+        DNS Server replies with URL if record is configured
+
+\DNS Record Types
+A -
+    IPv4 Record
+        32 Bits
+        URL to IP Address
+AAAA - 
+    IPv6 Record
+        URL to IP
+        128 Bits
+CNAME - 
+    Canonical Name Record
+    URL to URL
+    gogle.com going to google.com
+MX - 
+    Mail Exchange Record
+    Looks up where to send messages to certain domains
+NS - 
+    Indentifies Authoritative Name Server
+    If DNS Server can't direct to IP, it can direct to NS responsible for IP of a site
+PTR - 
+    Pointer Record
+    For reverse lookup
+SRV - 
+    Service Record
+    Specify the IP and Port # of a Domain
+TXT - 
+    Text record for miscellaneous use
+    Reserved for notes and documentation
+
+\DNS
+Internal vs. External DNS
+    Workstation first checks with Internal DNS to resolve an IP from a URL
+        If it can't be resolved, Internal DNS then checks with External DNS (Google DNS)
+            If it can't be resolved External DNS checks with Root DNS Server
+                Root DNS Server looks at Authoritative Name Server and sends data to External DNS
+                Authoritative Name Servers are often accompanied by Secondary Name Servers
+                    Zone Transfer over DNS Port 53, using TCP
+                External DNS can then query Authoritative Name Server
+                External DNS and Local DNS will cache this information
+                    TTL - Time to Live
+                        SOA - Start of Authority
+                            Contains TTL data for long a name should be kept before having to go all the way back up to Root DNS Server
+\Network Topologies                   
+Network Topologies
+    Bus, Ring, Star, Hybrid
+Bus
+    One wire connects all devices
+    10base5 (thicknet), 10base2 (thinnet) hardware
+    Older technology
+Ring
+    All devices connected to ring 
+    Coaxial cable, twisted pair cabling, fiber optics
+    Older technology 
+Star
+    Every device is wired to central location
+    Commonly used
+\Network Types
+Network Types
+    Peer to Peer, Client-Server
+Peer to Peer Network
+    Client to Client connection
+Client-Server Network
+    Server to multiple Clients connection
+\Network Classifications
+Network Classifications
+    LAN, WLAN, WAN, SAN, CAN, MAN, PAN
+LAN - 
+    Local Area Network
+        Numerous devices connected to a switch
+WLAN - 
+    Wireless Local Area Network
+        Numerous devices connected wirelessly to a switch
+WAN - 
+    Wide Area Network
+        Connects two networks together
+SAN - 
+    Storage Area Network
+        Storing information on hard drives or solid state drives over a network
+CAN - 
+    Campus Area Network
+MAN - 
+    Metropolitan Area Network
+PAN - 
+    Personal Area Network
+        Devices around you that connect to each other
+            Smart watch, phone
+\WAN Technologies
+WAN Technologies
+    Leased Line 
+    Fiber Optic
+    Internet 
+    ISDN
+Leased Line
+    Copper (T1)
+        For long distance, first of its kind
+        Analog phone signals into digital phone signals
+        Not as popular, but still used
+
+        T1 Link (E1 in Europe)
+            Bell Labs
+            24 Channels @ 64K each + framing bit = 1.544mbps
+
+        T3 (E3)
+            Multiple T1's linked together
+            44.736mbps
+
+Fiber Optic
+    High speed, high bandwidth
+Dark Fiber
+    Traffic up to 40 gbps
+    Customers need to add on their own lasers
+    Full control of bandwidth and equipment
+
+Metro Ethernet
+    Don't have to connect their own lasers
+    Reasonable price, control bandwidth with money
+    Devices all connect to Network Service Provider
+        MPLS - Multiprotocol Label Switching
+            Keeps organization traffic seperated and secure
+            Exists within the Network Service Provider
+
+Optical WAN
+    Far enough away from each other that copper is not viable
+    10+ miles
+Internet
+    DSL - Digital Subscriber Line
+    Fiber Optic
+    Satellite
+    Cable
+        Being used lately for streaming digital content as opposed to TV signals
+    
+ISDN
+    Integrated Services Digital Network
+PRI 
+    Primary Rate Interface
+        SIP trunk alternative
+            Connecting VoIP system into the POTS (Plain Old Telephone Service) network
+
+Demarcation Point 
+    Modern networks use a SmartJack
+        Middle point between Customer Equipment and Telephone Company Equipment
+        Interface to plug into internal network, physical connection into network
+
+CSU / DSU 
+    Cable Service Unit, Data Service Unit
+    Interface between T1 communication and Router communication
+
+SDWAN 
+    Software Defined Wireless Area Network
+mGRE   
+    Multipoint Generic Routing Encapsulation tunnels all devices to each other, not just to a Server
+    Efficient and designed
+\Virtual Networks
+Virtual Networks
+NFV - 
+    Network Function Virtualization
+Data Center
+    Accomodates a lot of bandwidth
+    VLAN, Network hardware, Virtual Load Balancer, Hypervisor
+VLAN
+    Secure and fast way to communicate
+Network hardware
+    Virtualize a switch that all devices go through
+Virtual Load Balancer
+    Has a Virtual IP and chooses between the best servers
+Hypervisor
+    Runs within servers inside of physical pieces of hardware
+    Virtualizes all of the networking equipment
+    
+
+\Data Center Networks
+3 Tier Design
+    Core 
+        Quiuckly move traffic
+        Few to no policies
+        Limit changes
+        Backbone of the network
+    Distribution
+        Distribute Network to Access Layer
+        Filter traffic
+        Routing policies
+        Controls the acccess between office and data center
+    Access
+        Provide network access to devices
+        Control access to network
+SDN  
+    Software Defined Networks
+Application Layer of SDN
+    Where administrators and developers create rulesets and policies that get pushed down to control layer
+    Creating Control Layer utilities
+Control Layer of SDN
+    Changes control rules and moves traffic to the right location efficiently
+    Adapts to the network after receiving input from the Application Layer 
+Infrastructure Layer of SDN 
+    Routers, switches, layer 3 switches connected with routing policies, switching policies 
+    Can talk from a client to a server on a network 
+    Management Plane
+        Mechanism for configuring, controlling, and monitoring all devices on the network 
+    SDN Controller
+        Traffic goes through a single device to monitor and control 
+Data Center of SDN
+    Switch at the top of a rack
+        Leaf Switch - Top of Rack Switch 
+        Spine Switch
+        East / West communication
+            Connects with other servers to make sure all content is provided to client
+            North / South is in and out of Server
+
+SAN - 
+    Storage Area Network Connections
+    Switch connects SAN to Server
+        Layer 2 Protocols - No TCP or IP
+            Fibre Channel
+                Fibre optic switch distributes SAN to Servers 
+            FCoE - Fibre Channel over Ethernet
+                Fibre Channel protocol ran over the internet 
+        iSCSI - Internet Small Computer Systems Interface
+            Uses TCP/IP to connect to Servers
+    Servers use this instead of a SSD or HD 
+
+\Cloud Services 
+Cloud Services
+    Standard Structure Served over Internet
+        Data Center Services
+            Server
+                Processor
+                Memory
+            Storage
+                Disk
+            OS/Software
+
+        Using someone else's network that is more efficient is cheaper than having your own
+
+
+
+
+SaaS - Software as a Service
+    Popular in consumer markets
+    Microsoft, Google, Adobe
+    Used in commercial operation for decades
+    Hosted DNS
+PaaS - Platform as a Service
+    Hardware / software remote connection
+    Server Side services
+    Database management 
+    Colocation, database platform with minimal support 
+        Somebody elses resources
+IaaS - Infrastructure as a Service
+    Server hardware renting
+    Disk and Storage amount
+    Automation
+DaaS - Desktop as a Service
+    Virtual Desktop to user 
+    Workstation is mobile
+
+    
+    
+     
+    
+\Cloud Benefits   
+Cloud Benefits
+    Multitenancy, Elasticity, Scalability, Security 
+Multitenancy
+    Servers are in many data centers
+Elasticity
+    Grow and shrink needs of IT infrastructure 
+Scalability
+    As we get more customers we can expand resources rapidly
+Security 
+    Security team is responsible instead 
+
+\Enterprise Network Infrastructure
+Enterprise Network Infrastructure
+    Wireless access points
+    Cabling 
+    Routers and switches 
+    Other devices 
+
+
+Physical Layer Medium Options 
+    Copper Cabling, Twisted Pair Cabling
+Copper Cabling
+    Most of cabling in most situations
+    Some other metals are rarely used
+
+Twisted Pair Cabling 
+    Increases amount of data pushed through wire
+    Twisting prevents cross talk from electro magnetic interference of signals 
+
+Cat 1
+    Doorbell
+    May not even be twisted 
+Cat 3
+    Telephone / 10mbps Ethernet 
+Cat 5 
+    100mb Ethernet
+Cat 5e
+    Gigabit Ethernet
+    Twisted and made in a more precise way 
+Cat 6 
+    Gigabit Ethernet 
+    Plastic spacer with 4 pairs of twisting wires twisting around it
+Cat 6a / Cat 7
+    10 Gigabit Ethernet 
+Cat 8 
+    40 Gigabit Ethernet
+    
+
+UTP - Unshielded Twisted Pairs
+    Seen most often  
+STP - Shielded Twisted Pairs
+    Metal shielding to protect from external signals 
+
+
+
+
+Pin 1 - RJ-11 / RJ-45 Connectors, EIA/TIA 568-B Specifications
+    Transmit+
+    White / Orange
+Pin 2 - RJ-11 / RJ-45 Connectors, EIA/TIA 568-B Specifications
+    Transmit-
+    Orange 
+Pin 3 - RJ-11 / RJ-45 Connectors, EIA/TIA 568-B Specifications
+    Receive+
+    White / Green
+Pin 4 - RJ-11 / RJ-45 Connectors, EIA/TIA 568-B Specifications
+    Nothing, but Necessary
+    Blue
+Pin 5 - RJ-11 / RJ-45 Connectors, EIA/TIA 568-B Specifications
+    Nothing, but Necessary
+    White / Blue
+Pin 6 - RJ-11 / RJ-45 Connectors, EIA/TIA 568-B Specifications
+    Receive-
+    Green
+Pin 7 - RJ-11 / RJ-45 Connectors, EIA/TIA 568-B Specifications
+    Nothing, but Necessary
+    White / Brown
+Pin 8 - RJ-11 / RJ-45 Connectors, EIA/TIA 568-B Specifications
+    Nothing, but Necessary
+    Brown
+Straight Through Cable
+    568-B to 568-B
+    Rx to Rx - Receving to Receiving
+    Tx to Tx - Transmit to Transmit 
+    Most often used 
+Crossover Cable 
+    568-B to 568-A
+    Tx to Rx - Transmit to Receving 
+    Rx to Tx - Receiving to Transmit
+    Positive to Positive, Negative to Negative
+    Used to connect like device to like device 
+        Router to router 
+        PC to router 
+Auto MDI-X - 
+    Auto Medium Dependent Interface Crossover "Auto Crossover" 
+    NIC (Network Interface Cards) automatically determine whether to use Crossover or Straight Through
+    Copper cables are limited to 100 m 
+        Unless you put in a repeater which is messy 
+
+Coaxial Cabling 
+    Cable TV / Cable Internet, Twinaxial Cable
+Cable TV / Cable Internet 
+    RG-6 
+    F-type Connector 
+Twinaxial Cable 
+    SFP 
+        NIC (Network Interface Cards) built into cable 
+    Connect switches, routers, SAN 
+66 Block 
+    Connects phone wires to circuits
+    Each row of 6 wire clamps is its own circuit
+110 Block 
+    Phone, not data networking, bigger 66 Block 
+    11 rows of 10 wire clamps 
+Punchdown Tool 
+    Spring loaded tool to cut wire and push it into a Patch Panel
+    3 Types 
+        Krone
+        110
+        Bix
+Patch Panel 
+    Runs cables from a central location 
+
+Fiber Optics
+    Photons carry data
+    Thin piece of glass 
+
+Single-mode Fiber Optics
+    Laser light goes straight through glass 
+    Good for long distances 
+    Connects Multi-mode networks over long distances 
+    Yellow colored wire jacket
+
+LX Laser Type 
+    1270 - 1610 nm Wavelength, 70 km Range 
+    
+Multi-mode 
+    LX Laser Type
+    More bouncing around, less signal strength
+    Fine for short distances
+    Often times used within same building or complex
+    Orange / Aqua colored wire jacket
+
+SX Laser Type 
+    770 - 860 nm, 0.5 - 1 km
+
+Optical Network Interface Cards 
+    Sometimes called optics, lasers, NICs
+
+GBIC - 
+    Gigabit interface converter
+    Not often used anymore 
+
+SFP / SFP+ - Small Form Pluggable 
+    Plug into special interface on switch, server, network device 
+    SFP+ is the next generation
+
+QSFP / QSFP+ - 
+    Quad Small Form Pluggable 
+
+Connectors 
+    ST, SC, LC, MTRJ, FC 
+
+ST Connector 
+    Round type bayonet
+SC Connector 
+    Square type, each fiber gets its own long connector  
+LC Connector 
+    Small connector that plugs into a SFP (Small Form Pluggable) 
+    Very common
+MTRJ Connector 
+    Ancient  
+FC Connector
+    Ancient 
+
+Fiber Connections 
+    APC, UPC 
+APC - 
+    Angled Physical Contact
+        Diagonally cut wires line up 
+            Less light is lost, stronger signal 
+UPC - 
+    Ultra Physical Contact 
+        Chamfer on ends of fibers \_/
+        Clean connection when pressed
+
+Fiber Optic Operation 
+    Simplex Pairm Bidirectional 
+Simplex Pair 
+    Transmitting and Receiving on one end, reflected on the other
+        Tx+ / Rx- / Rx+ / Tx- 
+Bidirectional
+    Send and receives through one fiber 
+        Each device has a Tx, and share an Rx
+        Tx+ / Rx+- / Tx-
+    More common and cost effective
+WDM - 
+    Wave Division Multiplexing
+        Different electromagnetic wavelengths of light are used so signals can pass by each other 
+        A prism can convert multiples signals into single signal, and another prism can separate the signal back out
+        1 - 70 Km range 
+
+CWDM - 
+    Coarse Wave Division Multplexing 
+        Passive, not powered 
+        Combines light into stream, pulls it out 
+DWDM - 
+    Dense Wave Division Multiplexing 
+        Powered 
+        Longer distances 
+        More wavelengths 
+
+Wireless
+    Photons read in the electromagnetic field  
+
+Ethernet Designations
+    10BaseT - Cat3
+    100BaseT - Cat5
+    1000BaseT - Cat5e / Cat6
+    10GBaseT - Cat6a / Cat7
+    40GBaseT - Cat8        
+
+    100BaseFX - Multi Mode Fiber
+    100BaseSX - Multi Mode Fiber
+    1000BaseSX - Multi Mode Fiber
+    1000BaseFX - Single Mode Fiber
+    10GBaseSR - Multi Mode Fiber
+    10GBaseLR - Single Mode Fiber
+
+
+
+/Ethernet Terms and Concepts
+CSMA / CD - Carrier Sense Multiple Access with Collision Detection
+    All devices connected on same coax cable 
+    Waited to send signals until no other device was talking
+    5 volt signal, if wire hit 10 volts (2 signals) then Collision
+        All devices stop talking, wait, then listen, then retransmit
+Collision Domains 
+    Group of networked devies that will simultaneously detect a voltage spike
+    Not used in modern networks, few collisions in modern networks 
+
+Half duplex 
+    One device communicates at a time 
+    If wire is long enough, two devices can send a message at the same time, causing a voltage spike 
+Full duplex 
+    Two devices communicate at a time "Telephone"
+    No possibility of collisions, modern networks 
+Ethernet Speed 
+    Ethernet - 10mbps 
+    FastEthernet - 100mbps 
+    GigabitEthernet - 1gbps
+    10GigabitEthernet - 10gbps
+    40GigabitEthernet - 40gbps
+
+Frame - 
+    Chunk of Data with 'Data Link Layer' Header 
+    Ethernet Header 
+        MAC Addresses, Type  
+    Data (Payload)
+        Data Packet
+MAC Address 
+    NICs are programmed with unique serial information
+        Manufacturer ID
+            Given from IEEE - Institute of Electronics Engineers  
+        Serial Number 
+            Combined with Manufacturer ID to create 12 hexadecimal MAC Address 
+Type Field 
+    Indicates what protocol is being used to move data 
+        IP, Ipv6, ARP
+        Resolves which software to send packets to 
+
+FCS 
+    Frame Check Sequence 
+    CRC (Cyclical Redundancy Check)
+        Algorithm that takes Destination, Source, Type, Data and outputs 32 bit number
+        Sending device runs, and if receving device confirms, frame is good
+
+MTU 
+    Maximum Transmission Unit 
+    Jumbo Frame - ( > 1500 bytes)
+        Only used in Data Center to maximize hardware 
+
+Frame - 
+    Protocol Data Unit
+    Call it a frame
+
+
+
+/Switch Operation
+Ethernet Switch 
+    Layer 2 Switch 
+    Makes Ethernet work 
+MAC Address Table 
+    Finds devices on switch and sends packets accordingly
+    Everything the switch needs to know 
+        Port
+            Number of Device, 1++ 
+        MAC 
+            Address of Device 
+
+ASIC - 
+    Application Specific Integrated Circuit 
+    Part of the switch that reads the MAC Address Table and allows communication between and towards devices within the network
+Layer 2 Broadcasts
+    When destination of the frame is all F's, the frame is sent out to all active interfaces except the receiving interface 
+        PC A sends to Switch sends to PCs B - G 
+
+Examine MAC Address Table 
+    SSH to Switch 
+    Connected to Switch with Serial Cable 
+        PuTTY application 
+            show mac address-table 
+                Looking at Type = Dynamic 
+
+STP - 
+    Spanning Tree Protocol 
+    Shuts down redundancy 
+        Prevents Broadcast Storm
+        Also prevents extra bandwidth from Double Link 
+        Can be set up with multiple Switches 
+
+Broadcast Storm
+    2 Switches with 2 Links causes a loop 
+        
+PuTTY show spanning-tree
+    Let's you know what Connections between Switches are made  
+
+    
+Port Aggregation 
+    Port Channel, Ether Channel, Channel Group
+LACP - 
+    Link Aggregation Control Protocol
+    Bonding 2 or more links as to operate as one 
+        Extra Bandwidth / Redundancy 
+
+VLANs - 
+    Virtual Local Area Networks 
+1 Switch 
+    can provide to Many Devices by seperate VLANs to Broadcast to Select Devices 
+2 Switches 
+    each with a Network, can be connected via Trunk Link to allow Select Devices on included in a VLAN on a Different Network
+Trunk Link 
+    Connects two switches together
+    Carries more than one VLAN of information
+        Keeps them seperate 
+    Tagged Port on Either End of Trunk Link 
+        No other Ports are Tagged 
+    802.1q Protocol     
+Switch connected to Voice VLAN (Phone) connected to Data VLAN (workstation)
+    Untagged Port betweeen Phone and PC 
+        Phone requires high quality VoIP 
+            Voice can't handle a 500ms delay, but web traffic can 
+Configure VLAN using PuTTY 
+    config t 
+        configuration commands 
+    
+        int f0/3
+            interface selection
+        switchport access vlan 20
+            changes vlan port of selected interface to 20
+        show mac address-table
+            view changes 
+Port Mirroring 
+    Web Client reports error with traffic 
+        Mirrors (copies) all web traffic sent to Web Client and sends it to another device for debug
+            WireShark
+                Analyse that traffic 
+
+PoE - 
+    Power over Ethernet 
+    Special Switch provides Power to Connected Devices 
+
+802.3af
+    2003
+    15.4 Watts DC Power 
+
+802.3at
+    2009
+    25.5 Watts DC Power 
+    PoE+
+
+/Routing IP Traffic 
+Network Layer Communication 
+    Layer 2 and Layer 3 are needed to communicate over entire networks 
+        Workstation < Router < Cable Modem - Layer 2 Bridge (Ethernet to DOCSIS [Pulls packet out of frame]) < Internet < Server
+            Internet is full of Routers 
+Message 
+    Layer 2 Frame 
+        IP Packet
+            Source IP Address 
+            Destination IP Address 
+            TTL - Time to Live 
+            Other  
+ICMP - 
+    Internet Message Control Protocol
+    What ping uses to senda message and receive a response 
+        Ping sets the source and destination in the IP Packet 
+ARP - 
+    Address Resolution Protocol 
+    Finds out MAC Address information from an IP on a Local Network 
+    Sends ARP request in a Frame Header 
+        Destination MAC Address is set to all F's so all devices get asked 
+        Source MAC Address is known, and Data section is set to ARP 
+            Device with matching IP stores Source
+                Sends to ARP Source, Data section is ARP, Payload is IP / MAC Address info 
+    Maintains an ARP Cache (Table)
+        Reduces ARP Request frequency
+        ARP Cache will age out of entries 
+            Stores MAC Addresses for limited time to allow for IP changes 
+        ARP Table is not MAC Address table 
+
+CMD arp -a 
+    Displays ARP Table 
+
+IGMP
+    Internet Group Management Protocol 
+    Windows uses to discover other devices on a network 
+    Pinging an IP and receiving the MAC Address will update the ARP Table 
+
+Default Gateway 
+    ARP Requests can't be sent over the Internet
+Routing Table on PC
+    Knows how to reach Local Network 
+    Puts Router as Destination, IPv4 as Data 
+Gateway (Router)
+    Checks routing table to see if it can find the IPv4 destination from the payload
+        Builds New Frame, TTL Decreased by 1
+        Queues message, Sends ARP Request to Found Device to retrieve MAC Address 
+            Places as Destination MAC Address in New Frame
+            Saves MAC Address to ARP Cache 
+        New Frame has Old Payload and Reaches Found Device 
+            Found Device can then Reply to Ping 
+
+
+/IP Routing 
+Internet is made up of mostly Routers
+    Each Router is linked to each other
+        Routers have Fast Ethernet connections to Networks, as well as Connections to other Routers 
+            Router A knows to Reach F0/0 or Router B
+        Hops are made across Routers
+Static Routing 
+    Permanently changed until changed again  
+Dynamic Routing
+    Interior Gateway Protocols  
+        Distance Vector
+RIP - 
+    Routing Information Protocol 
+        Outdated, dynamically builds Routing Tables
+        Administrative Distance (Route Priority) - 120
+            Higher Number - Lower Priority 
+EIGRIP - 
+    Enhanced Interior Gateway Protocol (Cisco)
+        On its way out, publicly available
+        Administrative Distance - 90
+
+OSPF - Link State 
+    Open Shortest Path First 
+        Popular in Enterprises 
+        Administrative Distance - 110
+Exterior Gateway Protocols 
+    Hybrid 
+BGP - 
+    Border Gateway Protocol 
+        Public internet, figures out who is using which traffic, maybe for payment
+        Administrative Distance - 20
+
+/Wireless Networking 
+/Basics of Wireless
+/    Electromagnetic Spectrum 
+Wavelength - 
+    Size of Wave
+    Relative to Frequency in Hertz, Cycles per Second
+Channels - 
+    Range of Frequencies used to Transmit Information 
+        
+Wireless Channels
+    2.4 & 5.0 GHz WiFi Spectrum
+2.4 GHz WiFi Spectrum 
+    2.400 GHz - 2.499 GHz
+    3 22 MHz Channels
+        Comprised of 5 Smaller Channels of about 5 MHz
+        Can only use 3 channels 1, 6, 11
+
+5.0 GHz WiFi Spectrum 
+    5.170 GHz - 5.835 GHz 
+    Channels 52 - 140 Require DFS - Dynamic Frequency Selection 
+        Used by the military
+    8 Channels Used by Home Networks 
+        DFS can be utilized by enterprises, but needs to be able to hop off the line
+
+802.11 Protocols 
+    IEEE Wireless Ethernet Protocols 
+        Institute of Electrical and Electronics Engineers 
+802 Protocol 
+    1997, is made for Ethernet
+802.11a
+    1999
+    Enterprises 
+    Uses 5.0 GHz only 
+    Up to 54 MBps
+802.11b
+    1999
+    Consumer Market
+    Uses 2.4 GHz only
+    Up to 11 MBps 
+    SOHO - Small Office Home Office  
+802.11g
+    2003
+    Consumer Market
+        Provided Faster, More Reliable to Meet Demands 
+    Up to 54 MBps 
+    Enterprise / SOHO
+802.11n
+    2009
+    Enterprise & Home 
+    Uses 2.4 and 5.0 GHz Spectrum 
+    Up to 300 MBps 
+    MIMO - Multiple In Multiple Out 
+        2 Antennas that can Function Simultaneously
+802.11ac
+    2013
+    5.0 GHz only
+    Up to 1.3 GHz
+        Depends on the physics of the connection (Walls, Trees, Metal)
+    MU-MIMO, Beamforming, OFDMA 
+MU-MIMO - Multi-User Multiple In Multiple Out 
+    Allows more than one wireless client with multiple antennas to use the same access point with multiple antennas at the same time  
+Beamforming
+    Figures out where the signal came from in a 3D space 
+        Sends a signal in a beam to increase signal strength
+OFDMA - Orthogonal Frequency Division Multiple Access 
+    Increases reliability and throughput 
+
+802.11 Technologies
+    Access Point, Wireless Clients, BSS, BSSID, SSID 
+    Point-to-Point Wireless
+Access Point - 
+    Central Hub (Sending and Receiving)
+    Omnidirectional Antenna 
+        Sends a signal in every direction uniformly
+Wireless Clients - 
+    Laptops, Smartphones, Tablets
+BSS - 
+    Basic Service Set
+    Encompasses the Home Network, Access Point serves Devices in SOHO  
+BSSID - 
+    Basic Service Set ID 
+    MAC Address 
+SSID - 
+    Service Set ID 
+    Name of a wireless network
+Point-to-point Wireless 
+    Directional Antenna 
+        Two buildings can have antennas that direct towards each other 
+            This can be blocked by tree growth or other buildings 
+        Yagi Antenna 
+            Enterprise 
+        CanTenna 
+            Can be made with Pringles cans at home 
+Signal Strength and Quality 
+    Measured in dB (Decibels) 
+    SNR
+SNR - 
+    Signal-to-Noise Ratio 
+    Highest is better, not a lot of noise
+Wireless Channel Bonding
+    Combine 22 MHz Channels with each other 
+        Cahnnel 1 and Channel 6 would be 44 Hz 
+            Allows 108 MBps from combined 54 MBps 
+Wireless Topologies
+    Ad Hoc, Mesh, Infrastructure 
+Ad Hoc 
+    IBSS
+    Typically Small WiFI Networks 
+    Sharing Files 
+    Toys 
+IBSS - 
+    Independent Basic Service Set 
+Infrastructure 
+    ESS
+    Enterprise WiFi 
+ESS - 
+    Extended Service Set 
+Controller Based Wireless Networks 
+    Wireless LAN Controller 
+        Connects to Multiple Access Points and one Workstation
+            Replaces connecting to each Access Point from the Workstation
+
+Roaming
+    Wireless Access Points Need to be Available for Dynamic Locations of End Users
+    
+    
+Wardriving - 
+    Searching for Wireless Networks to Break In to (illegal)
+
+Wireless Encryption Protocols 
+    WEP, WPA, WPA2, WPA3
+WEP  
+    Wired Equivalency Protocol
+    Abandoned, Password System that was Reverse Engineered 
+WPA - 
+    WiFi Protected Access 
+    Uses one of 2 Encryptions 
+        TKIP Encryption - Temporal Key Integrity Protocol  
+            Extension of WEP 
+            Used more for backwards compatibility
+        AES Encryption - Advanced Encryption Standard 
+WPA2 - 
+    WiFI Protected Acccess 2 
+    TKIP, AES, and Additional Mechanisms making it Harder to Crack Passwords 
+        WPA2 using AES is the minimum for Devices on a Secure Network 
+
+Personal WPA2
+    PSK - Pre-shared Key 
+        Password to Network that is Shared 
+Enterprise WPA2
+    802.1x
+        User or Method Authentication Protocol in Layer 2
+        
+        EAP-TLS 
+            Used to authenticate 
+
+            Username / Password 
+            Certificate 
+            Token
+WPA3 - 
+    WiFI Protected Access 3
+    AES with more bits of Encryption 
+
+Cellular Wireless
+    Analog Cellular became Digitalized 
+
+TDMA - 
+    Time Division Multiple Access 
+    Transfer of data at a very slow speed
+        iPhone 1
+    2G
+
+GSM - 
+    Global System for Mobile Communications
+    Allowed for faster speed communication between devices 
+    3G
+
+CDMA - 
+    Code Division Multiple Access 
+    Used by small U.S. Carriers 
+    3G
+
+LTE - 
+    Long-Term Evolution
+    Makes use of GSM and CDMA 
+    Still very popular, but moving on from it 
+    4G, 5G
+        5G still uses LTE, but changes in the backend provide lower latency high speed network 
+
+/Layer 2 Devices and Services 
+Modems 
+    Cable Modem, Fiber Optic Modem, DSL Modem
+Cable Modem 
+    DICSUS -> Ethernet 
+Fiber Optic Modem 
+    Technically a Media Converter called a Modem 
+    Fiber Optic Ethernet -> Copper Ethernet 
+DSL Modem - Digital Subscriber Line 
+    Runs over telephone wires (DSL -  Digital Subscriber Line)
+    Antiquated
+    DSL -> Ethernet
+Network Traffic 
+    Switch, by default, serves First Come First Serve 
+    VoIP are high priority, requiring definite priority 
+        A special queue is made in the switch to prioritize VoIP 
+Bandwidth Management 
+    Limiting the bandwidth allowed on a link 
+    Managing Quality of Service
+        Some services require high priority 
+    Flow Control
+        Added to switches to affect efficiency 
+
+Neighbor Discovery Protocol 
+    Devices can see what is directly connected "neighbors"
+
+LLDP - 
+    Link Layer Discovery Protocol 
+    Devices that are not Cisco 
+
+CDP - 
+    Cisco Discovery Protocol 
+    On all Cisco devices, and some non-Cisco devices 
+    Less secure, but great for troubleshooting 
+    
+PuTTY show cdp neighbor 
+    Shows Cisco Discovery Protocol Table 
+
+/Other Networked Devices 
+Load Balancers
+    Works Between Transport Layer (4) and Network Layer (3)
+    Allows a Single VIP (Virtual IP Address) to Connect to Numerous Servers
+        Distributes Load Across Servers
+        Directs to the Server with the Most Resources Available
+Firewalls 
+    Normal firewalls work at the Transport Layer (4)
+    Lets inside traffic go in, but limits traffic going out unless it is intentionally sent  
+    Does this by setting up area in network called a DMZ named after military Demilitarized Zone 
+        Access Control Lists 
+        IP Address (or range)
+        Port Number (or range)
+NGFW - Next Generation Firewall 
+    Operates at the Application Layer (7), Transport Layer (4), and Network Layer (3) 
+    Includes Intrusion Detection / Intrusion Prevention 
+        Traffic is crossed against database to see if it matches undesirable traffic
+Proxy Server (Content Filter)
+    Allows Certain Content and Blocks Others 
+    Could be used to Protect Intellectual Property 
+VPN Concentrator - Virtual Private Network Concentrator 
+    Puts IP packets inside of IP packets to encrypt them 
+    Provides security
+Unified Threat Management
+    Application Layer (7) Firewall
+    Content Filter / Proxy Server 
+    IDS / IPS - Intrusion Detection / Intrusion Prevention 
+    
+VoIP - Voice over IP 
+    Phone has a Switch that Connects to a Network 
+    Phone Connects to VoIP Gateway
+        Device that handles all incoming and outcoming calls, makes phone ring 
+
+        Uses SIP Trunk 
+            Connects to POTS (Plain Old Telephone Service) 
+            Allows multiple phone calls to happen simultaneously
+/Smart Devices 
+/Printers
+HVAC - 
+    Heating Ventilating Air Conditioning
+Physical Access Controls (Card Readers)
+    Palm scanner, retina scanner, badge scanner 
+IoT - 
+    Internet of Things Devices 
+    Collect a lot of data 
+        ex. thermometer in fridge givng an alert 
+Industrial Controls SCADA - 
+    Supervisory Control and Data Acquisition
+    Manufacturing Data Collected by Central Server 
+        Adjusting or managing performance
+/Security Cameras 
+
+/Network Management and Operations 
+/Monitoring the Network 
+Need for Network Monitoring
+    Important to know the status of the links, interfaces, etc. 
+        Especially in Systems with Redundancy where the Broken Link is Bypassed
+    Determines Where Issues are Occuring on the Network
+        
+Network Monitoring Details
+    Performance Metrics and Sensors
+        Determines State of Hardware, Temperature, etc.
+    Interface Statistics
+        How much Data is Passed through an Interface
+    Interface Errors or Alerts
+    Environmental Factors / Sensors 
+        Temperature, Humidity, etc.
+    Device Uptime / Downtime
+        When the last time a device rebooted
+
+Observium Server 
+    Information on a Network 
+        Devices, Ports, Statuses
+            Up, Down, or Shutdown
+            Speeds
+        Processors, Memory Usage, and Traffic 
+        Packets 
+            TCP or UDP
+        Interfaces
+
+Layer 2 Errors 
+    Giants, Runts, Encapsulation Error, CRC Error 
+Giants
+    Message that is too large, Switch throws it away
+Runts
+    Message that is too small, Switch throws it away 
+Encapsulation Error 
+    Some issue loading the Frame 
+CRC Error - Cyclical Redundancy Check Error 
+    Put Binary through Algorithm to Output 32 Bit Value 
+    Frames should always put out the same 32 bit value 
+        If they don't it is a CRC Error 
+
+Facilities Monitoring
+    Building / Room Temperature 
+        Needs to be Cool 
+    Humidity 
+        Needs to be Low 
+    Electrical Status 
+        Batter Backups, Redundancies
+    Floods
+        Lol, not good 
+        
+/Collecting Network Monitoring Data
+Baselining
+    What behavior our devices display when a system is in a standard state 
+        When traffic spikes etc. you can compare it to your Baseline 
+SNMP - 
+    Simple Network Management Protocol 
+    Protocol to collect device data
+SNMP Manager 
+    (i.e. Observium Server) configures SNMP Agents (Routers and Switches) with a Community String
+    SNMP Agents use SNMP Server IP and Community String to talk to each other 
+Collecting Information
+    Trap 
+        If an interface goes down sends a message to the SNMP Server, which can alert an Admin 
+        When an interface is back online, they send another trap to the SNMP Manager (Server)
+    Walk
+        Sends a request out to all devices to get all information 
+MIB - 
+    Management Information Base 
+    Database of device priorities
+    OID
+OID - 
+    Object indentifiers
+    "MIB number" - Identifier for each of the device properties
+SNMPv2c
+    Community string to authenticate
+    Read only or read write access 
+    Added bulk data collection mechanism 
+SNMPv3 
+    SNMP view 
+        Limits amount of devices 
+            Checks only certain MIBs
+    Encrypts communication Baselining
+Baselining
+    What behavior our devices display when a system is in a standard state 
+        When traffic spikes etc. you can compare it to your Baseline 
+Netflow 
+    A way of collecting information on devices 
+    Snapshot of traffic on devices 
+        Not the packet itself, just the source and destination, maybe the porotocol
+    Can compare spikes in traffic to the baseline (baselining) alerting Admin 
+        ex. Spike in SSH traffic reports as SSH is only being used in device configuration  
+/Logging 
+Syslog 
+    Centralized Logging System where Syslog Server uses Syslog Protocol on the Application Layer (7) to Collect data when an Event occurs on a Device and send it to the Syslog Server  
+        Syslog Server stores this data in a database 
+        Can be used to trace back the origin of an issue  
+
+Logging Levels 
+    (0 is the Most Important Issue) 
+    0 - Emergency 
+    1 - Alert 
+    2 - Critical 
+    3 - Error 
+    4 - Warning 
+    5 - Notice 
+    6 - Informational
+    7 - Debug 
+Traffic Logs
+    Information on amount, type of traffic  
+Audit Logs 
+    Records user 
+    Authenticates device
+        Provides different levels of security 
+Netflow 
+    A way of collecting information on devices 
+    Snapshot of traffic on devices 
+        Not the packet itself, just the source and destination, maybe the porotocol
+    Can compare spikes in traffic to the baseline (baselining) alerting Admin 
+        ex. Spike in SSH traffic reports as SSH is only being used in device configuration  
+
+/IT Documentation 
+/Plans and Procedures
+Standard Operating Procedures
+    Workflow
+        How a system works and how we use it 
+    Technical Documentation 
+        Instructional manuals, technical manuals on a system 
+    Contact Information 
+        Who supports a software 
+    
+    Help Desk 
+        Can look up how to best solve issue 
+Change Management
+    Engineers and Analysts to Communicate
+    
+    Process for changing IT Systems Configurations 
+        Upgrading hardware, modifying configuration
+    Documentation
+        What / when changes will be made 
+        Effect on other systems 
+    Cross IT Discussion
+        Checks if changes affect other workflows
+    Post Change Verification
+        Asks the affected users if changes worked as expected
+    More documentation
+        Document actual changes to compare to anticipated changes 
+Systems Life Cycle 
+    Circular Process 
+        Analyze 
+            Look at needs to find proper solution
+        Design 
+            Consider available tools, and come up with solution accordingly
+        Implement
+            Purchase hardware, build out the system and prepare them for use, testing 
+        Utilize and Support 
+            Users wil utilize and IT will suppport
+        Phase Out and Dispose 
+            Dispose of hardware without exposing or losing sensitive information 
+IRP - 
+    Incident Response Plan 
+DRP - 
+    Disaster Recovery Plan 
+        What we do in case of disaster, power outage, flood
+Business Continuity Plan         
+    How business continues to operate without a system
+/Security and Device Policies 
+Security Policy
+    Recommendations and guidance into how users should use hardware 
+On Boarding / Off Boarding
+    Managers of new employees submit a request for access to hardware, software 
+        Removing access from people who leave the company  
+Remote Access / BYOD (Bring Your Own Device)
+    Workers, etc. are allowed to use their own devices 
+    Companies want
+        Secure Devices 
+        Virus / Malware Scans 
+        Username / Password / Passcode Requirements
+        Cookies
+    Remote Access Policy 
+        VPN Access 
+            Allows you to Tunnel to work 
+        Remote Desktop Access 
+            Allows you to control a workstation in your organization 
+        Remote Application Access 
+            Allows you to access an application in your organization
+Password Policy 
+    Password Construction Rules 
+        What are the rules for the password to be built 
+    Password Expiration / Change Rules 
+        How long is password valid, what are rules for new password 
+    Lost Password Rules 
+        Options for forgotten passwords, reset
+    Password Security Guidelines 
+        Not writing it down or sharing it with others 
+    NIST Recommendations
+        Users choose passwords in a predictable way 
+        Users use special characters ina  predictable way 
+        Users change passwords in a predictable way 
+
+        8 Characters Minimum, 256 Maximum  
+            Longer is better 
+            Avoid spaces
+        Encourage Longer, Easier to Remember Passwords
+        Avoid Special Restrictions 
+        No Mandatory Resets 
+        Ban Common Passwords 
+        Educate about not reusing passwords between work and home 
+        Encourage Password Vaults / Generators 
+        Enforce MFA (Multi-Factor Authentication)
+Acceptable Use Policy
+    Web Browsing Guidance / Restrictions
+    Software Installation
+        Users not being allowed to install software 
+    E-Mail Communication Guidelines 
+    Transferring Data Guidelines 
+        How data can be safely transferred across devices 
+    Consequences 
+Data Loss Prevention
+    Policy, Technology to Prevent the Loss of Valuable Information 
+Agreements
+    NDA, SLA, MOU
+NDA - 
+    Non-disclosure Agreement 
+    Can't talk about private company information
+SLA - 
+    Service Level Agreement 
+    Requirements for a level of service (99% uptime)
+MOU - 
+    Memorandum of Understanding 
+    Universities set policies on what equipment can be used for 
+    
+/Network Drawings
+Data Center 
+    Server Racks have aisles of space between them 
+        They have front and backs pointint at each other in the aisles
+        Every other aisle is an aisle of fronts
+MDF
+    Main Distribution Frame 
+        Fiber WAN Connections 
+        Single Mode Fiber (WAN)
+        Multi Mode Fiber (to IDFs)
+        Telephone Connections 
+        to Telco (T1, PRI, POTS)
+        Network Hardware Media / Converters
+IDF
+    Intermediate Distribution Frame 
+        Multimode Fiber (to MDF)
+        Fiber Patch Panel
+        CAT 6 Patch Panel (to Desktops / Printers)
+        Network Switches 
+
+/Network Drawings 
+/Network Symbols
+Router Symbol (Network Drawings)
+    Circle with arrows pointing in and out
+Switch Symbol (Network Drawings)
+    Square with arrows pointing out 
+Layer 3 Switch Symbol (Network Drawings) 
+    Box with a "Sun"
+        Square with Circle with arrows pointing out 
+Firewall Symbol (Network Drawings)
+    Circle with "Fast Forward" button
+        Triangle pointing right and a vertically placed rectangle
+Access Point Symbol (Network Drawings)
+    Square
+    Wave symbol 
+    Rounded down top
+Wireless Controller Symbol (Network Drawings)
+    Square
+    Wave symbol 
+    Arrows pointing to Arrow
+    Device Naming Conventions
+        Number of Devices 
+        Types of Devices 
+        Type / Location of Buildings 
+/Other Documentation
+Site Survey Reports 
+    Checks strength in all areas, draws a heat map 
+Audit Assessment Reports
+    Group, often external, tests our systems 
+    Security Audit / Assessment 
+        Make sure data is secure, firewalls are active 
+    Inventory Audit / Assessment 
+        All devices are accounted for 
+    User Access Audit / Assessment 
+        Make sure that users have appropriate access 
+Baseline Configuration 
+    Configuration Management 
+        Periodic Record of device configurations 
+        Baseline Configurations 
+        Routers, Switches, Firewalls 
+
+Disaster Recovery 
+    Creating High Availability Networks 
+Business Network Disaster Recovery 
+    Load Balancer in Data Center
+    Multiple Load Balancers 
+    First Hop Redundancy Protocols
+    Multiple Internet Service Providers
+    UPS 
+    HVAC Redundancy 
+    Hot Site 
+    Backups 
+    Snapshots 
+    Service Level Agreement Terms
+Load Balancer in Data Center 
+    If one server goes down Load Balancer redirects traffic to another server 
+Multiple Load Balancers 
+    If one fails, functionality continues
+    Multipathing, having redundant equipment, multiple paths through network 
+    Requires Multiple Switches 
+        These connect the Load Balncers to the Servers 
+        NIC Teaming
+NIC Teaming
+    Two different NICs on One Server on Different Switches 
+        If one NIC goes down the other will continue its operations 
+First Hop Redundancy Protocols 
+    HSRP, VRRP
+HSRP - 
+    Hot Standby Routing Protocol 
+    Cisco proprietary
+VRRP - 
+    Virutal Router Redundancy Protocol
+    Redundant default gateway
+    Allows workstations to connect to two different routers across one default gateway
+Multiple Internet Service Providers 
+    If a wire gets cut, there is another 
+    No lapse in services for a business 
+UPS - 
+    Uninterruptable Power Supply 
+    Multiple Power Distirbution Units or Power Supplies
+        Backup Generators 
+/HVAC Redunancy 
+/Fire Extinguishing System that Considers Electronics 
+    /Gas Extinguisher 
+Hot Site 
+    Redundant Data Centers 
+        Data Center Replication in case entire Data Center goes offline i.e. meteor (lol)
+        Traffic is directed between hotsite and normal server 
+    Warm Site 
+        Traffic is only transferred if there is an issue 
+        Completely synced up and ready to perform as a Hot Site 
+    Cold Site 
+        Hardware is present but it is turned off 
+        Action is required on site to be turned on 
+    Cloud Site 
+        As long as you have internet access, you have a back up 
+
+Backups
+    Some physical duplication of files for access later, redundancy 
+Snapshots 
+    Versions of the software saved so that if issues arise, goiing back is possible  
+Service Level Agreement Terms
+    Business Agreement for Service 
+MTTR - 
+    Mean Time to Repair
+    Amount of time to repair on average 
+MTBF - 
+    Mean Time Between Failures 
+    Amount of time of failure on average 
+RTO  - 
+    Recover Time Objective 
+    Amount of time that system can be down 
+RPO  - 
+    Recovery Point Objective  
+    Amount of data that can be lost, failed, before it is significant 
+
+/IT Security Concepts 
+The need for IT Security 
+    Data on your behaviors and interests need to be protected 
+Confidentiality, Integrity, and Availability 
+    Private, secure / Correct, unaltered / Easy to access  
+Threats, Vulnerabilities, Exploits 
+    Potential to adversely impact, Weakness in Security, Taking Advantage of a Vulnerability
+        0 Day Vulnerabilities are unknown to anyone but maybe a few hackers
+/Reducing Exposure to Threats                    
+Zero Trust 
+    Devices Aren't Trusted Until Run Through Policies and Procedures 
+
+\User Identity and Authentication
+Role Based Access 
+    Only have access to required systems 
+Least Privilege 
+    Allow as little access as required 
+    Applies to system processes too 
+Separation of Duties 
+    Processes require more than one person
+\Device Identity and Authentication
+Network Access Control 
+    Authenticate User 
+    Authenticate Device 
+    Scan Device 
+    Provide Least Privilege Access 
+    Provide Access Based on Role 
+Network Segmentation
+    Screened Subnet or DMZ 
+        Multiple VLANs set up for specific purposes 
+        Rules on a firewall 
+        Honeypot, fake data that looks desirable to keep attackers busy 
+/Policy Compliance / Device Scan 
+/Application Authorization / Access Control 
+
+\Authentication Models 
+AAA - 
+    Authentication, Authorization, and Accounting 
+Authentication 
+    Username and Password 
+Authorization 
+    Privileges and Access Rights
+Accounting 
+    Record of who did what when 
+
+TACACS+ - 
+    Terminal Access Controller Access-Control System Plus (Cisco proprietary)
+RADIUS  - 
+    Remote Authentication Dial-in User Service (IETF)
+\Authentication Protocols 
+Local Authentication 
+    Username / Password 
+Domain Authentication 
+    Kerberos 
+        Validates Device Sending Authentication as well as User / Password that's being sent 
+        Works in conjunction with LDAP - Lightweight Directory Access Protocol
+            They allow multiple layers of access for a single username and password 
+            
+            Kerberos sends sign in to Accounting Services, which can check with the Active Directory Server to confirm access
+
+            Single Sign On 
+                One Username and Password 
+                Multiple Servers Connected to Kerberos    
+\Multifactor Authentication
+Something You Know 
+    Username / Password 
+Something You Have 
+    App on Phone, Smart Key 
+Something You Are 
+    Face, Fingerprint, Retinal, Hand 
+Somewhere You Are 
+    Location, IP Address 
+Something You Do 
+    Speech Recognition, Signature 
+\Device Authentication 
+Access Control 
+    802.1X / EAP can be used to set up more than just Username / Password authentication 
+        Can authenticate a device, including wirelessly 
+
+\Security Assessments 
+Areas of Risk in IT 
+    Technical Risks
+        Things were pushed out hastily
+        Temporary fixes were used
+        Errors in configuration 
+        Errors in design  
+    Facilities Risks 
+        Physical access to data center 
+        Card readers 
+        Bad actors entering building 
+        Switch Closet has a Mob Bucket 
+    Human Risks  
+        Phishing links 
+        Malicious links 
+        Virus attachments 
+        Password Sharing 
+SIEM - 
+    Security Info and Event Management
+Internal Risk Assessment
+    Policies 
+    Procedures 
+    Processes 
+    SIEM - Security Info and Event Management 
+External Risk Assessment
+    Professionals 
+        Security Assessment Professional 
+        Business Assessment Professional
+        Look at 
+            Threat Assessment 
+                What type of business, what threats are serious
+            Vulnerability Assessment 
+                Check facilities, firewall rules are written correctly, role based access least privilege 
+            Posture Assessment 
+                Validate Servers, Workstations, Tablets, Phones for Malicious Software
+            Penetration Testing
+                Give a security professional permission to hack the network / service of an organization  
+Scan a Server with NMAP
+    Shows all Services within a Server 
+        Input an IP and Start the Scan 
+            All Port / Host Information
+            Fingerprint Data on Devices
+                OS Family / Generation 
+Business Risk Assessment 
+    Examine policies and procedures 
+    Verify policies are followed 
+    Assess vendor security posture 
+
+Security Information and Event Management 
+    Relies on Logging and SNMP Servers
+        Correlates Events to see if Users are doing what they are supposed to be 
+    
+\Common Network Attacks 
+Human Exploits 
+    Social Engineering, Tailgating, Shoulder Surfing
+Social Engineering 
+    Email Phishing 
+    Impersonation 
+    USB Drives 
+Tailgating (Piggybacking) 
+    Following someone in behind a door 
+Shoulder Surfing 
+    Someone looks over and sees your password or pin 
+Technical Attacks 
+    DOS, DDOS, WiFi, On Path, Rogue DHCP
+DOS Attack - Denial of Service 
+    Could send a ping to blue screen of death someone 
+DDOS Attack - Distributed Denial of Service 
+    Reflective Attack 
+        IP Spoofing 
+            Send a message where Source and Destination are not the Workstation  
+        Ping a server to ping a workstation with an overload of pings 
+    Amplification Attack 
+        Uses IP Spoofing towards DNS Servers 
+            Causes target to receive an overload of DNS requests 
+            Causes DNS Servers to become overloaded 
+WiFI Attacks 
+    Wardriving 
+        Driving with a laptop to find open networks 
+    Rogue AP Attacks 
+        Install Access Point to network, direct users to it 
+            Allows access to the devices 
+        Evil Twin Attacks 
+            Sends all traffic through twin network 
+                Pineapple 
+    MAC Spoofing 
+        Changing MAC Address to a device that just disconnected from your network to be allowed in  
+On Path Attack 
+    Man-in-the-middle Attack 
+        Device gets all traffic filtered to it before sending traffic out to the switch 
+Rogue DHCP Servers 
+    Tries to beat in speed a DHCP Server 
+        Can send back incorrect IPs before the real DHCP sends back the real IPs 
+Password Attacks 
+    Brute Force Password Attacks 
+        List of all passwords on Have I been pwned
+Other Attacks 
+    Virus / Malware 
+    Ransomware 
+    DNS Poisoning
+        DNS points to false IP addresses 
+    VLAN Hopping 
+        Most modern switches don't allow this 
+
+\Network Device Hardening 
+Securing Layer 2
+    Switches have preassigned VLAN (VLAN1)
+        Abandon default VLAN 
+    Disable Switch Ports that Aren't Used 
+    Make Use of Private VLANs 
+        Having a VLAN for just 1 or 2 devices defends againts ARP Spoof or man-in-the-middle attacks
+Port Security 
+    Switch Port will Shut Off if a Device that Isn't Supposed to Be There Connect
+    DHCP Snooping Bindings 
+        Looks for an Expected MAC, IP, and Port when handling DHCP Traffic, before sending ARP Requests 
+            Dynamic ARP Inspection
+        IPv6 Route Advertisement Guard 
+            Checks MAC, IPv6, Port 
+Securing Layer 3 and 4 
+    Access Control Lists 
+        permit host 10.0.0.10
+        implicit deny any
+            denies anything but 10.0.0.10 
+            deny anything else, don't worry about it 
+        permit any 192.168.10.10 eq 443
+            Extended access list permitting any device to go through the firewall as long as it is using HTTPS 
+    Control Plane Policing 
+        Monitor traffic to determine what is good versus bad traffic 
+Securing Layer 7 and Above
+    SMNP 
+        Not secure 
+    SNMPv2c 
+        Community string to authenticate 
+        Read only or read write acccess
+    SNMPv3 (Prime Choice)
+        SNMP view 
+            Allows access to only certain MIBs 
+        Encrypts communication 
+        Authenticates devices 
+            Provides different levels of security 
+    Software Updates 
+        Firmware Updates 
+        OS  / Software Patches 
+    
+Password Security 
+    Change Default Pasword 
+    Make it reasonably complex 
+    Password Security Guidelines 
+    
+\Wireless Security 
+Wireless Encryption 
+    WEP - Wireless Equivalency Protocol 
+        Antiquated 
+    WPA - WiFi Protected Access 
+        Antiquated, Slightly harder to crack 
+    WPA2
+        Most Devices  
+    WPA3
+        The most secure devices 
+
+Authentication 
+    Open Network (Shared)
+    Pre-Shared Key (PSK)
+        Password 
+    EAP
+    EAP-FAST 
+        Antiquated 
+    PEAP
+        Authenticates a User to a Network 
+    EAP-TLS 
+    PEAP-TLS 
+        Authenticates a User and a Device to a Network 
+
+    MAC Filtering 
+        Only allowing certain MAC Addresses 
+            Relatively easy for a hacker to get past by changing their MAC Address to one with Access 
+
+Geofencing 
+    Wireless access inside of buildings, but not outside of buildings 
+    Built in to modern sontrols by sending spoof signals far outside the routers on the edges to "fence" the network in 
+Other Wireless Security Considerations 
+    Client Isolation
+        Devices are unable to talk to each other, only their router 
+    Additional SSIDs 
+        Guest SSID 
+            Network access for non-employees without accessing company network 
+            Can be given to Family and Friends in a home network
+            
+\Remote Access and Security 
+Remote Access Options 
+    SSH, VPN, Remote Desktop, Virtual Desktop
+SSH - 
+    Secure Shell 
+    CLI Access to Devices like Routers Switches, Servers, Load Balancers Firewalls
+
+    Examine on PuTTY Application 
+        show run 
+            
+VPN - 
+    Virtual Private Network 
+    Creates an Encrypted Tunnel Between Devices 
+
+    Site to Site
+        Two devices in different locations are connected   
+        Router / Firewall to Router / Firewall 
+        Typically uses IPSec 
+    Remote Access
+        PC to Router / Firewall
+        IPSec 
+        Clientless (SSL)
+    Client VPN 
+        Application is manually run to connect 
+
+RDP - 
+    Remote Desktop Protocol 
+    Remote Desktop
+    Microsoft 
+VNC - 
+    Virtual Network Computing
+    Remote Desktop
+    Open Source 
+Virtual Desktop 
+    Virtual computer to use on remote machine 
+    Secures corporate network 
+\Network Management 
+In / Out of Band Management 
+    Out of Band Management 
+        Configuring Devices While Network is Down
+
+        AUX Port hooked up to Modem (Dial-Up Modem) hooked up to PSTN (Public Switched Telephone Network) hooked up to our Workstation via a Modem and Serial Cable 
+            Dial in to remote devices to configure and repair devices   
+In Band Management 
+    Configuring Devices While Network is Up
+
+\Physical Security 
+Video Surveillance
+    See who made what changes and when 
+
+    Motion Sensors 
+        Turn on cameras
+        Turn on lights 
+        STOP, WHAT'RE YOU DOING IN THE SERVER ROOM? 
+Asset Tracking Tags 
+    Tamper Detection 
+        Void if Removed 
+        Indication that something was tampered with 
+Facility Access 
+    Limited access, Card Reader 
+    
+    Secure Area Vestibule
+        Area Between Secure Area and Data Center 
+
+    Fingerprint, Retinal Scan
+
+\Network Troubleshooting and Tools 
+Troubleshooting Methodology
+    Identify the Problem 
+    Establish a Theory of Cause
+    Test the Theory
+    Establish a Plan of Action
+    Implement a Solution 
+    Verify Solution 
+    Document Solution 
+ 
+Identify the Problem (Troubleshooting)
+    Gather information 
+    Identify Symptoms
+        What user can and can't do 
+    Question Users 
+    Change Management
+    Duplicate Problem 
+        Can it be reprod?
+    Multiple Problems?   
+Establish a Theory of Cause (Troubleshooting)
+    Check things in a sensical order 
+    Check ego at the door  
+Test the Theory (Troubleshooting)
+    Avoid breaking network 
+Establish a Plan of Action (Troubleshooting)
+    Examine Required Changes 
+    Change Management 
+        Formal system where people submit, communicate changes
+    Rollback Plan 
+        How we will get back to status quo 
+
+\Identifying and Troubleshooting Cable Issues
+    Wired Cable Specifications and Uses 
+        CAT 5/6/7
+            Copper 
+                100 m, up to 10Gb 
+        Multi MOde (SX)
+            Fiber 
+                1 km, up to 100Gb 
+        Single Mode (LX)
+            Fiber 
+                70 km, up to 10Gb+
+        Crossover Cable 
+            Like device to Like device 
+        Straight Through Cable 
+            PC to Switch 
+        Straight Through Cable 
+            Switch to Router 
+    Common Cable Issues 
+        Try a different cable 
+            Damaged Cable 
+            Bent Pins 
+            Incorrect Pinout 
+            Incorrect Cable Type 
+            Open / Short 
+            Bad Port 
+        Check the Patch Panel
+            Be careful not to damage 
+        Attenuation
+            Cables can only be so long before needing a repeater or shorter cable 
+        EMI - Electromagnetic interference
+            Makes changes to signals 
+        Crosstalk 
+            Fixed with Tiwsted Pair 
+            Wires talk to each other 
+        Fluorescnet Lights
+            Alter signal with EMI 
+        Duplex Mismatch 
+            Expected Half or Whole Duplex
+        Ethernet Switch LED 
+            Green is good
+            Red or Yellow is bad 
+        Tx / Rx Reverse 
+            Mixed up wires can mess up signals 
+        Transceiver Mismatch 
+            SX Transceiver can't talk to LX Transceiver  
+    Fiber Optic Cabling Tools  
+        OTDR - Optical Time-domain Reflectometer
+            Finds faults in fiber optic 
+        Loopback Adapter 
+            OTDR Device is connected to one end of fiber and other end is replaced with a mirror to create a loop
+                Can check sections for faults 
+        Fusion Splicer 
+            Heats up fiber to connect it all as one piece of glass 
+CLI Utilitiies: Ping, ARP, and Traceroute
+    Ping
+        Gets a response 
+        Destination is Unavailable
+            Gets a RTO (Request Time Out)
+            Says Host or Network was unreachable
+    Traceroute
+        TTL - Time to Live 
+            Number of Routers a Message will Go Through 
+            Each Router Decreases the Number by 1
+        Increasing the TTL by 1 Until the Destination is Reached 
+            Gives information on all of the routers it stops at on the way to destination 
+CLI Utilitiies: NMAP, Netstat, NSLookup, and SSH 
+    NMAP (GUI)
+        Scan a remote system 
+    Netstat 
+        See what ports are open 
+    NSLookup  
+        Queries DNS for an IP 
+    PuTTY
+        Telnet 
+            show ip route 
+                shows routing information and how to reach it 
+            show arp 
+                shows ARP Table 
+        SSH 
+            show mac address-table 
+                Shows MAC Addresses 
+            show mac address-table a123.b456.c789
+                Wants MAC Address in 3 chunks seperated by Periods
+Network Software Utilities 
+    Capturing Traffic 
+        Direct Capture 
+            Packet Capture of Everything in and out of a switch 
+            Utility called Wireshark and WinPcap 
+                Analyze traffic in Wireshark
+        Port Mirror 
+            All traffic on one port is mirrored
+
+        External Capture Device 
+            Physical monitoring of traffic
+    Wireshark 
+        ip.addr==192.168.10.1
+            Shows only packets sent 
+        Follow TCP Stream 
+            Telnet sends passwoords as cleartext (this is not safe)
+    TCPDump
+        Shows TCP calls in Terminal 
+    Moving Files with TFTP 
+        PuTTY
+            copy running-config tftp 
+                Will ask for remote hoast IP Address 
+                Will ask for location of file 
+                Will copy file to that TFTP server 
+Wireless Troubleshooting and Utilities
+    WiFI Signal 
+        Signal Strength 
+            Throughput 
+                Amount of information that can effectively be transeferred
+                Actual Speed  
+            Negotiated Speed 
+                Intended Speed of Transfer based on Signal Strength (Distance)
+            RSSI - Received Signal Strength Indication 
+                Measurement of received signal strength from another device 
+                Signal Strength and RSSI goes down with Distance 
+            EIRP - Effective Isotropic Radiated Power 
+                How strong the signals are from an access point or device  
+    Antennas 
+        Signal Polarization 
+            Orientation of device in space will affect signal 
+        Reflection
+            Signals are reflected by wall 
+        Absorption 
+            Signals are absorbed by wall 
+        Attenuation 
+            Signals die out from range 
+    Common Wireless Issues 
+        Wrong Antenna 
+            Omnidirectional 
+            Directional 
+        Frequency Mismatch
+            5.0 GHz 
+            2.4 GHz 
+        Interference 
+            Microwaves 
+        Channel Overlap 
+            Spectrum Analyzer can help find other wireless signals on the same channels 
+            Staggering Channels 1, 6, 11 can Increase Speed 
+        Client Diassociation 
+        AP Association Time 
+        Channel Utilization 
+            Might be overusing and underusing channels 
+    Configuration Issues 
+        Wrong SSID 
+        Wrong Passphrase 
+        Security Mismatch 
+        Captive Portal Issues 
+Troubleshooting Common PC Networking Issues 
+    Less Common Switch Issues 
+        Speed / Duplex Mismatch 
+        Broadcast Storm (STP not enabled)
+        Optical Link Budget 
+            Amount of light lost from faults in fiber
+        Collisions (hubs only)
+        Multicast  
+Troubleshooting Layer 7 and Above Issues 
+    Routing Issues 
+        Routing Loop 
+            Routers send packet back and forth 
+                Can be tracked with Traceroute 
+NTP - Network Time Protocol 
+    Synchronixe with internet time server 
+Host Firewall 
+    Inbound Rule > New Rule > Custom Rule > ICMPv4
+        Will allow pings through Firewall 
+        Firewalls are good to have, but can cause issues with testing 
+Other Issues 
+    BYOD Challenges 
+        No administrative control over user's device 
+    Licensed Features Issues 
+    Network Performance Issues 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
