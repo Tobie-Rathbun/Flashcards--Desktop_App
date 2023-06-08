@@ -82,8 +82,10 @@ def show_flashcards(flashcards):
         nonlocal current_card_index, is_front_shown, history_index
         current_card_index = random.choice(range(len(flashcards)))  # Shuffle selection of cards
         is_front_shown = True
-        card_history.append(current_card_index)  # Add this card to the history
-        history_index += 1  # Update the history index
+        # Add the card to history only if it's not already the last card in history
+        if len(card_history) == 0 or (len(card_history) > 0 and card_history[-1] != current_card_index):
+            card_history.append(current_card_index)  # Add this card to the history
+            history_index += 1  # Update the history index
 
         title_text.set(flashcards[current_card_index][0])  # Show the section title
         line_text.set("Line: "+str(flashcards[current_card_index][3]))  # Show the line number
@@ -92,7 +94,8 @@ def show_flashcards(flashcards):
 
     def next_history():
         nonlocal current_card_index, is_front_shown, history_index
-        if history_index < len(card_history) - 1:  # If there is a next card in the history
+        # Simply increment the history index and set the current_card_index
+        if history_index + 1 < len(card_history):  # Make sure we're within the history range
             history_index += 1
             current_card_index = card_history[history_index]  # Get the next card from the history
             is_front_shown = True
@@ -101,6 +104,7 @@ def show_flashcards(flashcards):
             line_text.set("Line: "+str(flashcards[current_card_index][3]))  # Show the line number
             update_card_text(current_card_index)
             flip_button.config(text="Flip to Back")
+
 
     def prev_history():
         nonlocal current_card_index, is_front_shown, history_index
@@ -115,8 +119,13 @@ def show_flashcards(flashcards):
             flip_button.config(text="Flip to Back")
 
     def try_next_history():
-        if not next_history():
+        if history_index + 1 < len(card_history):
+            next_history()
+        else:
             next_card()
+
+
+    
 
     update_card_text(current_card_index)
 
@@ -144,8 +153,8 @@ def show_flashcards(flashcards):
     flip_button = ttk.Button(button_frame, text="Flip to Back", command=flip_card)
     flip_button.pack(side=tk.LEFT, padx=5)
 
-    # Create next button
-    next_button = ttk.Button(button_frame, text="Next Card", command=try_next_history)
+    # Next button command
+    next_button = ttk.Button(button_frame, text="Next Card", command=next_card)
     next_button.pack(side=tk.LEFT, padx=5)
 
     # Configure hover styles for buttons
@@ -185,7 +194,7 @@ def generate_flashcards(filename):
             # If line is indented, add it to the current back
             elif line[0].isspace():
                 if current_front is not None:
-                    current_back.append(line.lstrip())  # Keep the first character
+                    current_back.append(line)  # Keep the entire line
             else:
                 # If we're starting a new front, save the previous one
                 if current_front is not None:
@@ -201,7 +210,10 @@ def generate_flashcards(filename):
     if current_front is not None:
         flashcards.append((section_title, current_front, "\n".join(current_back), question_start_line))
 
+    random.shuffle(flashcards)  # Shuffle the flashcards
+
     return flashcards
+
 
 
 filename = "flashcards.txt"  # Replace with your file name

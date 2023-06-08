@@ -316,7 +316,7 @@ iperf -s
 iperf -c 10.0.0.100
     Connects to Client at IP  
 
-/Terminal (Linux)
+\Terminal (Linux)
 ifconfig 
     similar to ipconfig on Windows
 route 
@@ -357,7 +357,7 @@ Hexadecimal
 
 
 //////////////////////////////////////////
-\IP Addresses & Subnetting Networks ///
+\IP Addresses & Subnetting Networks
 //////////////////////////////////////////
 
 
@@ -780,7 +780,7 @@ Hypervisor
 \Data Center Networks
 3 Tier Design
     Core 
-        Quiuckly move traffic
+        Quickly move traffic
         Few to no policies
         Limit changes
         Backbone of the network
@@ -809,11 +809,12 @@ Infrastructure Layer of SDN
         Traffic goes through a single device to monitor and control 
 Data Center of SDN
     Switch at the top of a rack
-        Leaf Switch - Top of Rack Switch 
+        Leaf Switch - 
+            Top of Rack Switch 
+            East / West communication, Networking Equipment
         Spine Switch
-        East / West communication
             Connects with other servers to make sure all content is provided to client
-            North / South is in and out of Server
+            North / South, in and out of Server
 
 SAN - 
     Storage Area Network Connections
@@ -995,6 +996,7 @@ Fiber Optics
     Thin piece of glass 
 
 Single-mode Fiber Optics
+    LX Laser Type
     Laser light goes straight through glass 
     Good for long distances 
     Connects Multi-mode networks over long distances 
@@ -1004,7 +1006,7 @@ LX Laser Type
     1270 - 1610 nm Wavelength, 70 km Range 
     
 Multi-mode 
-    LX Laser Type
+    SX Laser Type
     More bouncing around, less signal strength
     Fine for short distances
     Often times used within same building or complex
@@ -1317,8 +1319,8 @@ RIP -
         Outdated, dynamically builds Routing Tables
         Administrative Distance (Route Priority) - 120
             Higher Number - Lower Priority 
-EIGRIP - 
-    Enhanced Interior Gateway Protocol (Cisco)
+EIGRP - 
+    Enhanced Interior Gateway Routing Protocol (Cisco)
         On its way out, publicly available
         Administrative Distance - 90
 
@@ -1360,45 +1362,48 @@ Wireless Channels
 802.11 Protocols 
     IEEE Wireless Ethernet Protocols 
         Institute of Electrical and Electronics Engineers 
-802 Protocol 
+802 IEEE Wireless Ethernet Protocols
     1997, is made for Ethernet
-802.11a
+802.11a IEEE Wireless Ethernet Protocols
     1999
     Enterprises 
     Uses 5.0 GHz only 
     Up to 54 MBps
-802.11b
+802.11b IEEE Wireless Ethernet Protocols
     1999
     Consumer Market
     Uses 2.4 GHz only
     Up to 11 MBps 
     SOHO - Small Office Home Office  
-802.11g
+802.11g IEEE Wireless Ethernet Protocols
     2003
     Consumer Market
         Provided Faster, More Reliable to Meet Demands 
     Up to 54 MBps 
     Enterprise / SOHO
-802.11n
+802.11n IEEE Wireless Ethernet Protocols
     2009
     Enterprise & Home 
     Uses 2.4 and 5.0 GHz Spectrum 
     Up to 300 MBps 
     MIMO - Multiple In Multiple Out 
         2 Antennas that can Function Simultaneously
-802.11ac
+802.11ac IEEE Wireless Ethernet Protocols
     2013
     5.0 GHz only
     Up to 1.3 GHz
         Depends on the physics of the connection (Walls, Trees, Metal)
     MU-MIMO, Beamforming, OFDMA 
-MU-MIMO - Multi-User Multiple In Multiple Out 
-    Allows more than one wireless client with multiple antennas to use the same access point with multiple antennas at the same time  
+MU-MIMO - 
+    Multi-User Multiple In Multiple Out 
+        Routers can communicate to more than one device simultaneously
+        Allows more than one wireless client with multiple antennas to use the same access point with multiple antennas at the same time  
 Beamforming
     Figures out where the signal came from in a 3D space 
         Sends a signal in a beam to increase signal strength
-OFDMA - Orthogonal Frequency Division Multiple Access 
-    Increases reliability and throughput 
+OFDMA - 
+    Orthogonal Frequency Division Multiple Access 
+        Increases reliability and throughput 
 
 802.11 Technologies
     Access Point, Wireless Clients, BSS, BSSID, SSID 
@@ -1605,7 +1610,7 @@ Physical Access Controls (Card Readers)
 IoT - 
     Internet of Things Devices 
     Collect a lot of data 
-        ex. thermometer in fridge givng an alert 
+        ex. thermometer in fridge giving an alert 
 Industrial Controls SCADA - 
     Supervisory Control and Data Acquisition
     Manufacturing Data Collected by Central Server 
@@ -1733,7 +1738,7 @@ Netflow
     Can compare spikes in traffic to the baseline (baselining) alerting Admin 
         ex. Spike in SSH traffic reports as SSH is only being used in device configuration  
 
-/IT Documentation 
+\IT Documentation 
 /Plans and Procedures
 Standard Operating Procedures
     Workflow
@@ -1847,7 +1852,7 @@ MOU -
 /Network Drawings
 Data Center 
     Server Racks have aisles of space between them 
-        They have front and backs pointint at each other in the aisles
+        They have front and backs pointing at each other in the aisles
         Every other aisle is an aisle of fronts
 MDF
     Main Distribution Frame 
@@ -2124,28 +2129,36 @@ Shoulder Surfing
     Someone looks over and sees your password or pin 
 Technical Attacks 
     DOS, DDOS, WiFi, On Path, Rogue DHCP
-DOS Attack - Denial of Service 
+DOS Attack - 
+    Denial of Service 
     Could send a ping to blue screen of death someone 
-DDOS Attack - Distributed Denial of Service 
-    Reflective Attack 
-        IP Spoofing 
-            Send a message where Source and Destination are not the Workstation  
-        Ping a server to ping a workstation with an overload of pings 
-    Amplification Attack 
-        Uses IP Spoofing towards DNS Servers 
-            Causes target to receive an overload of DNS requests 
-            Causes DNS Servers to become overloaded 
-WiFI Attacks 
-    Wardriving 
-        Driving with a laptop to find open networks 
-    Rogue AP Attacks 
-        Install Access Point to network, direct users to it 
-            Allows access to the devices 
-        Evil Twin Attacks 
-            Sends all traffic through twin network 
-                Pineapple 
-    MAC Spoofing 
-        Changing MAC Address to a device that just disconnected from your network to be allowed in  
+DDOS Attack - 
+    Distributed Denial of Service
+    IP spoofing to overload servers
+    Reflective / Amplification Attacks  
+Reflective Attack 
+    Reply is sent back to another computer
+    Uses the same protocol in both directions
+    IP Spoofing 
+        Send a message where Source and Destination are not the Workstation  
+    Ping a server from a false ip so that the server pings a workstation with that ip with an overload of pings 
+Amplification Attack 
+    Multiple replies are sent to another computer
+    Generates a high volume of packets 
+    Uses IP Spoofing towards DNS Servers 
+        Causes target to receive an overload of DNS requests 
+        Causes DNS Servers to become overloaded 
+\WiFI Attacks 
+Wardriving 
+    Driving with a laptop to find open networks 
+Rogue AP Attacks 
+    Install Access Point to network, direct users to it 
+        Allows access to the devices 
+    Evil Twin Attacks 
+        Sends all traffic through twin network 
+            Pineapple 
+MAC Spoofing 
+    Changing MAC Address to a device that just disconnected from your network to be allowed in  
 On Path Attack 
     Man-in-the-middle Attack 
         Device gets all traffic filtered to it before sending traffic out to the switch 
@@ -2252,7 +2265,7 @@ Remote Access Options
     SSH, VPN, Remote Desktop, Virtual Desktop
 SSH - 
     Secure Shell 
-    CLI Access to Devices like Routers Switches, Servers, Load Balancers Firewalls
+    CLI Access to Devices like Routers, Switches, Servers, Load Balancers Firewalls
 
     Examine on PuTTY Application 
         show run 
@@ -2451,64 +2464,67 @@ Network Software Utilities
                 Will ask for remote hoast IP Address 
                 Will ask for location of file 
                 Will copy file to that TFTP server 
-Wireless Troubleshooting and Utilities
-    WiFI Signal 
-        Signal Strength 
-            Throughput 
-                Amount of information that can effectively be transeferred
-                Actual Speed  
-            Negotiated Speed 
-                Intended Speed of Transfer based on Signal Strength (Distance)
-            RSSI - Received Signal Strength Indication 
-                Measurement of received signal strength from another device 
-                Signal Strength and RSSI goes down with Distance 
-            EIRP - Effective Isotropic Radiated Power 
-                How strong the signals are from an access point or device  
-    Antennas 
-        Signal Polarization 
-            Orientation of device in space will affect signal 
-        Reflection
-            Signals are reflected by wall 
-        Absorption 
-            Signals are absorbed by wall 
-        Attenuation 
-            Signals die out from range 
-    Common Wireless Issues 
-        Wrong Antenna 
-            Omnidirectional 
-            Directional 
-        Frequency Mismatch
-            5.0 GHz 
-            2.4 GHz 
-        Interference 
-            Microwaves 
-        Channel Overlap 
-            Spectrum Analyzer can help find other wireless signals on the same channels 
-            Staggering Channels 1, 6, 11 can Increase Speed 
-        Client Diassociation 
-        AP Association Time 
-        Channel Utilization 
-            Might be overusing and underusing channels 
-    Configuration Issues 
-        Wrong SSID 
-        Wrong Passphrase 
-        Security Mismatch 
-        Captive Portal Issues 
-Troubleshooting Common PC Networking Issues 
-    Less Common Switch Issues 
-        Speed / Duplex Mismatch 
-        Broadcast Storm (STP not enabled)
-        Optical Link Budget 
-            Amount of light lost from faults in fiber
-        Collisions (hubs only)
-        Multicast  
+\Wireless Troubleshooting and Utilities
+/WiFI Signal 
+/Signal Strength 
+Throughput 
+    Amount of information that can effectively be transeferred
+    Actual Speed  
+Negotiated Speed 
+    Intended Speed of Transfer based on Signal Strength (Distance)
+RSSI - 
+    Received Signal Strength Indication 
+        Measurement of received signal strength from another device 
+        Signal Strength and RSSI goes down with Distance 
+EIRP - 
+    Effective Isotropic Radiated Power 
+        ow strong the signals are from an access point or device  
+/Antennas 
+Signal Polarization 
+    Orientation of device in space will affect signal 
+Reflection
+    Signals are reflected by wall 
+Absorption 
+    Signals are absorbed by wall 
+Attenuation 
+    Signals die out from range 
+Common Wireless Issues 
+Wrong Antenna 
+    Omnidirectional 
+    Directional 
+Frequency Mismatch
+    5.0 GHz 
+    2.4 GHz 
+Interference 
+    Microwaves 
+Channel Overlap 
+    Spectrum Analyzer can help find other wireless signals on the same channels 
+    Staggering Channels 1, 6, 11 can Increase Speed 
+Client Diassociation 
+/AP Association Time 
+Channel Utilization 
+    Might be overusing and underusing channels 
+Configuration Issues 
+    Wrong SSID 
+    Wrong Passphrase 
+    Security Mismatch 
+    Captive Portal Issues 
+\Troubleshooting Common PC Networking Issues 
+Less Common Switch Issues 
+    Speed / Duplex Mismatch 
+    Broadcast Storm (STP not enabled)
+    Optical Link Budget 
+        Amount of light lost from faults in fiber
+    Collisions (hubs only)
+    Multicast  
 Troubleshooting Layer 7 and Above Issues 
     Routing Issues 
         Routing Loop 
             Routers send packet back and forth 
                 Can be tracked with Traceroute 
-NTP - Network Time Protocol 
-    Synchronixe with internet time server 
+NTP - 
+    Network Time Protocol 
+        Synchronixe with internet time server 
 Host Firewall 
     Inbound Rule > New Rule > Custom Rule > ICMPv4
         Will allow pings through Firewall 
